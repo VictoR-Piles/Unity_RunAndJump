@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MoveLeft : MonoBehaviour
 {
-	private PlayerController playerControllerScript;
-
 	public float speed = 30f;
+	public float outOfBoundsLeftX = -15f;
+	
+	private PlayerController playerControllerScript;
 
 	void Start()
 	{
@@ -22,6 +23,11 @@ public class MoveLeft : MonoBehaviour
 		else
 		{
 			playerControllerScript.jumpForce = 0;
+		}
+
+		if (transform.position.x < outOfBoundsLeftX && gameObject.CompareTag("Obstacle"))
+		{
+			Destroy(gameObject);
 		}
 	}
 }
