@@ -25,7 +25,7 @@ public class MoveLeft : MonoBehaviour
 			playerControllerScript.jumpForce = 0;
 		}
 
-		if (transform.position.x < outOfBoundsLeftX && gameObject.CompareTag("Obstacle"))
+		if (transform.position.x <= outOfBoundsLeftX && gameObject.CompareTag("Obstacle"))
 		{
 			Destroy(gameObject);
 		}
