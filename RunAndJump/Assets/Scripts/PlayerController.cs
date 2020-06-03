@@ -39,4 +39,9 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("GAME OVER");
 		}
 	}
+
+	public bool getGameOver()
+	{
+		return gameOver;
+	}
 }

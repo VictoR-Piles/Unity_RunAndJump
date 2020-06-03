@@ -9,9 +9,11 @@ public class Spawner : MonoBehaviour
 	public float spawnInterval = 2f;
 
 	private Vector3 spawnPos = new Vector3(30, 0, 0);
+	private PlayerController playerControllerScript;
 
 	void Start()
 	{
+		playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
 		InvokeRepeating("SpawnObstacle", startDelay, spawnInterval);
 	}
 
@@ -21,6 +23,9 @@ public class Spawner : MonoBehaviour
 
 	void SpawnObstacle()
 	{
-		Instantiate(obstacelPrefab, spawnPos, obstacelPrefab.transform.rotation);
+		if (!playerControllerScript.getGameOver())
+		{
+			Instantiate(obstacelPrefab, spawnPos, obstacelPrefab.transform.rotation);
+		}
 	}
 }
