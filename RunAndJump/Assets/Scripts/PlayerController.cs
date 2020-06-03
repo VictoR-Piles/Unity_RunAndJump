@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
 	private Rigidbody rb;
 	private bool onGround = true;
+	private bool gameOver = false;
 
 	void Start()
 	{
@@ -26,8 +27,16 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void OnCollisionEnter(Collision other)
+	private void OnCollisionEnter(Collision collision)
 	{
-		onGround = true;
+		if (collision.gameObject.CompareTag("Ground"))
+		{
+			onGround = true;
+		}
+		else if (collision.gameObject.CompareTag("Obstacle"))
+		{
+			gameOver = true;
+			Debug.Log("GAME OVER");
+		}
 	}
 }
