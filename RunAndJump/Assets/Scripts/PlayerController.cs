@@ -9,20 +9,26 @@ public class PlayerController : MonoBehaviour
 	public float jumpForce = 10f;
 
 	private Rigidbody rb;
+	private Animator anim;
 	private bool onGround = true;
 	private bool gameOver = false;
+	private static readonly int JumpTrig = Animator.StringToHash("Jump_trig");
+	private static readonly int DeathB = Animator.StringToHash("Death_b");
+	private static readonly int DeathTypeInt = Animator.StringToHash("DeathType_Int");
 
 	void Start()
 	{
 		Physics.gravity *= gravityModifier;
 		rb = GetComponent<Rigidbody>();
+		anim = GetComponent<Animator>();
 	}
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space) && onGround)
+		if (Input.GetKeyDown(KeyCode.Space) && onGround && !gameOver)
 		{
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+			anim.SetTrigger(JumpTrig);	// TAMBIEN SE PUEDE PASAR COMO STRING
 			onGround = false;
 		}
 	}
@@ -36,7 +42,7 @@ public class PlayerController : MonoBehaviour
 		else if (collision.gameObject.CompareTag("Obstacle"))
 		{
 			gameOver = true;
-			Debug.Log("GAME OVER");
+			anim.SetBool(DeathB, true);
 		}
 	}
 

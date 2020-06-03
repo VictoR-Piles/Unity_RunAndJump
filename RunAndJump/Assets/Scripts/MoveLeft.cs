@@ -20,10 +20,6 @@ public class MoveLeft : MonoBehaviour
 		{
 			transform.Translate(Vector3.left * (Time.deltaTime * speed));
 		}
-		else
-		{
-			playerControllerScript.jumpForce = 0;
-		}
 
 		if (transform.position.x <= outOfBoundsLeftX && gameObject.CompareTag("Obstacle"))
 		{
