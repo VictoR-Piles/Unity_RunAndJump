@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-	public GameObject obstacelPrefab;
+	public GameObject[] obstacelPrefab;
 	public float startDelay = 2f;
 	public float spawnInterval = 2f;
 
@@ -25,7 +25,8 @@ public class Spawner : MonoBehaviour
 	{
 		if (!playerControllerScript.getGameOver())
 		{
-			Instantiate(obstacelPrefab, spawnPos, obstacelPrefab.transform.rotation);
+			int randomObstacle = Random.Range(0, obstacelPrefab.Length);
+			Instantiate(obstacelPrefab[randomObstacle], spawnPos, obstacelPrefab[randomObstacle].transform.rotation);
 		}
 	}
 }

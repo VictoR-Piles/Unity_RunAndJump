@@ -150,8 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97e02b607a113642b8cd5d58f01bb66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacelPrefab: {fileID: 5707577061812241114, guid: 8cd21bbc7d1a856459d7176702c05010,
-    type: 3}
+  obstacelPrefab:
+  - {fileID: 5707577061812241114, guid: 8cd21bbc7d1a856459d7176702c05010, type: 3}
+  - {fileID: 6034715552643028626, guid: 00c16458a4c72584d885444bfebe437c, type: 3}
   startDelay: 2
   spawnInterval: 2
 --- !u!4 &63312789
@@ -440,6 +441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 30
+  outOfBoundsLeftX: -15
 --- !u!114 &835818923
 MonoBehaviour:
   m_ObjectHideFlags: 0
