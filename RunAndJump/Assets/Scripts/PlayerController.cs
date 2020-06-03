@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public ParticleSystem explosionParticle;
+	public ParticleSystem dirtParticle;
 	public float gravityModifier = 1f;
 	public float jumpForce = 10f;
 
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
 		Physics.gravity *= gravityModifier;
 		rb = GetComponent<Rigidbody>();
 		anim = GetComponent<Animator>();
+		dirtParticle.Play();
 	}
 
 	void Update()
@@ -28,7 +31,8 @@ public class PlayerController : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Space) && onGround && !gameOver)
 		{
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-			anim.SetTrigger(JumpTrig);	// TAMBIEN SE PUEDE PASAR COMO STRING
+			anim.SetTrigger(JumpTrig); // TAMBIEN SE PUEDE PASAR COMO STRING
+			dirtParticle.Stop();
 			onGround = false;
 		}
 	}
@@ -38,10 +42,13 @@ public class PlayerController : MonoBehaviour
 		if (collision.gameObject.CompareTag("Ground"))
 		{
 			onGround = true;
+			dirtParticle.Play();
 		}
 		else if (collision.gameObject.CompareTag("Obstacle"))
 		{
 			gameOver = true;
+			explosionParticle.Play();
+			dirtParticle.Stop();
 			anim.SetBool(DeathB, true);
 		}
 	}
